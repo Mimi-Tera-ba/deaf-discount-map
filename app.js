@@ -50,7 +50,10 @@ function renderData(data) {
     card.innerHTML = `
       <img src="${item.imageUrl || 'https://picsum.photos/100/100?random=' + Math.random()}" alt="${item.name}" class="facility-card-image">
       <div class="facility-card-content">
-        <span class="badge">${item.genre}</span>
+        <span class="badge ${
+          item.genre === '交通機関' ? 'badge-transport' : 
+          item.genre === '駐車場' ? 'badge-parking' : 'badge-leisure'
+        }">${item.genre}</span>
         <h3>${item.name}</h3>
         <p>📍 ${item.address}</p>
         <p>💰 ${item.discount}</p>

@@ -123,13 +123,18 @@ main {
 
 .facility-card .badge {
   display: inline-block;
-  background: #E0E7FF;
-  color: #4338CA;
   font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
   border-radius: 99px;
   margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-weight: bold;
 }
+
+/* ジャンルごとの色（Google Mapsのピン色に合わせる） */
+.badge-leisure { background: #EA4335; } /* 赤：観光・レジャー施設 */
+.badge-transport { background: #4285F4; } /* 青：交通機関 */
+.badge-parking { background: #34A853; } /* 緑：駐車場 */
 
 .facility-card p {
   font-size: 0.85rem;
