@@ -1,0 +1,27 @@
+name: Weekly Link Checker
+
+on:
+  schedule:
+    - cron: '0 23 * * 0' # 毎週月曜日の朝8時(日本時間)に自動実行
+  workflow_dispatch: # ボタンから手動でいつでも実行可能
+
+permissions:
+  contents: write
+
+jobs:
+  check-links:
+    runs-on: windows-latest
+
+    steps:
+      - name: コードの取得 (Checkout)
+        uses: actions/checkout@v4
+
+      - name: リンク切れチェックの実行
+        run: .\check_links.ps1
+
+      - name: レポートを保存して更新 (Commit and Push)
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add link_report.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "📝 リンク切れレポートを更新" && git push)

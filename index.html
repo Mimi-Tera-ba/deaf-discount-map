@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聴覚障害者向け 割引情報マップ (MVP版)</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Leaflet CSS (無料の地図ライブラリ) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🗺️ 聴覚障害者割引情報マップ</h1>
+    <p>全国のレジャー施設・交通機関の割引情報を検索</p>
+  </header>
+  
+  <main>
+    <aside class="sidebar">
+      <div class="filter-group">
+        <label for="prefFilter">都道府県</label>
+        <select id="prefFilter">
+          <option value="all">すべて</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="genreFilter">カテゴリー</label>
+        <select id="genreFilter">
+          <option value="all">すべて</option>
+          <option value="観光・レジャー施設">観光・レジャー施設</option>
+          <option value="交通機関">交通機関</option>
+          <option value="駐車場">駐車場</option>
+        </select>
+      </div>
+      
+      <div id="listContainer" class="list-container">
+        <!-- リストがここに生成されます -->
+      </div>
+    </aside>
+    
+    <div id="map" class="map-container"></div>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- データとアプリのロジック -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
