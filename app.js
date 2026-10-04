@@ -56,6 +56,7 @@ function renderData(data) {
         }">${item.genre}</span>
         <h3>${item.name}</h3>
         <p>📍 ${item.address}</p>
+        <p>⏰ <strong>営業時間:</strong><br><span style="font-size:0.85em; color:var(--text-sub); display:inline-block; margin-top:2px;">${item.hours || '情報なし'}</span></p>
         <p>💰 ${item.discount}</p>
         <a href="${item.url}" target="_blank">🔗 公式サイトを見る</a>
       </div>
@@ -87,7 +88,7 @@ function renderData(data) {
     
     // ピンのクリックイベント
     marker.addListener('click', () => {
-      infoWindow.setContent(`<b>${item.name}</b><br>${item.discount}`);
+      infoWindow.setContent(`<div style="max-height: 200px; overflow-y: auto;"><b>${item.name}</b><br><br>⏰ <b>営業時間:</b><br><span style="font-size:0.9em;">${item.hours || '情報なし'}</span><br><br>💰 ${item.discount}</div>`);
       infoWindow.open(map, marker);
     });
 
