@@ -66,11 +66,20 @@ function renderData(data) {
       lng += (Math.random() - 0.5) * 0.1;
     }
 
+    // ピンの色をジャンルごとに変える
+    let pinIcon = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'; // 観光・レジャー施設は「赤」
+    if (item.genre === '交通機関') {
+      pinIcon = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'; // 交通機関は「青」
+    } else if (item.genre === '駐車場') {
+      pinIcon = 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'; // 駐車場は「緑」
+    }
+
     // 2. マップにピンを立てる
     const marker = new google.maps.Marker({
       position: { lat: lat, lng: lng },
       map: map,
-      title: item.name
+      title: item.name,
+      icon: pinIcon
     });
     
     // ピンのクリックイベント
