@@ -1,16 +1,26 @@
-// 地図の初期化（東京を中心にする）
-const map = L.map('map').setView([35.681236, 139.767125], 5);
+let map;
+let markers = [];
+let infoWindow;
 
-// Google Mapsのタイルを使用（見慣れたデザイン）
-L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
-  attribution: '&copy; <a href="https://developers.google.com/maps/documentation">Google Maps</a>'
-}).addTo(map);
+// 地図の初期化
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 35.681236, lng: 139.767125 },
+    zoom: 5,
+    mapTypeId: 'roadmap', // 見慣れたGoogle Maps
+    mapTypeControl: false,
+    streetViewControl: false
+  });
+  infoWindow = new google.maps.InfoWindow();
+
+  // 初回表示
+  populatePrefectures(facilitiesData);
+  renderData(facilitiesData);
+}
 
 const listContainer = document.getElementById('listContainer');
 const prefFilter = document.getElementById('prefFilter');
 const genreFilter = document.getElementById('genreFilter');
-
-let markers = [];
 
 // データから都道府県のプルダウンを自動作成する関数
 function populatePrefectures(data) {
@@ -30,7 +40,7 @@ function renderData(data) {
   listContainer.innerHTML = '';
   
   // マップのピンをクリア
-  markers.forEach(marker => map.removeLayer(marker));
+  markers.forEach(marker => marker.setMap(null));
   markers = [];
 
   data.forEach((item) => {
@@ -48,14 +58,6 @@ function renderData(data) {
       </div>
     `;
 
-    // カードクリックで地図を移動
-    card.addEventListener('click', () => {
-      map.setView([item.lat, item.lng], 14);
-      marker.openPopup();
-    });
-
-    listContainer.appendChild(card);
-
     // 取得失敗して東京駅に重なっているピンを見えるように少しだけ散らす
     let lat = item.lat;
     let lng = item.lng;
@@ -65,9 +67,28 @@ function renderData(data) {
     }
 
     // 2. マップにピンを立てる
-    const marker = L.marker([lat, lng]).addTo(map)
-      .bindPopup(`<b>${item.name}</b><br>${item.discount}`);
+    const marker = new google.maps.Marker({
+      position: { lat: lat, lng: lng },
+      map: map,
+      title: item.name
+    });
+    
+    // ピンのクリックイベント
+    marker.addListener('click', () => {
+      infoWindow.setContent(`<b>${item.name}</b><br>${item.discount}`);
+      infoWindow.open(map, marker);
+    });
+
     markers.push(marker);
+
+    // カードクリックで地図を移動し、ポップアップを開く
+    card.addEventListener('click', () => {
+      map.setZoom(14);
+      map.setCenter(marker.getPosition());
+      new google.maps.event.trigger(marker, 'click');
+    });
+
+    listContainer.appendChild(card);
   });
 }
 
@@ -89,6 +110,5 @@ function filterData() {
 prefFilter.addEventListener('change', filterData);
 genreFilter.addEventListener('change', filterData);
 
-// 初回表示
-populatePrefectures(facilitiesData);
-renderData(facilitiesData);
+// 画面読み込み時に地図を初期化
+window.onload = initMap;
