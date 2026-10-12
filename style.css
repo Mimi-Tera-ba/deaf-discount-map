@@ -148,3 +148,20 @@ main {
   flex: 1;
   height: 100%;
 }
+
+/* フッター・免責事項 */
+.sidebar-footer {
+  padding: 0.75rem 1rem;
+  background: #F9FAFB;
+  border-top: 1px solid #E5E7EB;
+}
+
+.disclaimer-text {
+  font-size: 0.72rem;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.disclaimer-text strong {
+  color: #374151;
+}

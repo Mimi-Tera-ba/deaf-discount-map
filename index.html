@@ -23,6 +23,10 @@
         </select>
       </div>
       <div class="filter-group">
+        <label for="keywordFilter">キーワード（施設名など）</label>
+        <input type="text" id="keywordFilter" placeholder="検索ワードを入力..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit;">
+      </div>
+      <div class="filter-group">
         <label for="genreFilter">カテゴリー</label>
         <select id="genreFilter">
           <option value="all">すべて</option>
@@ -34,6 +38,12 @@
       
       <div id="listContainer" class="list-container">
         <!-- リストがここに生成されます -->
+      </div>
+
+      <div class="sidebar-footer">
+        <p class="disclaimer-text">
+          ⚠️ <strong>免責事項</strong>: 掲載情報は調査時点のものです。手帳の種別・等級による条件や最新の料金は、お出かけ前に必ず各公式サイトまたは現地にてご確認ください。
+        </p>
       </div>
     </aside>
     
