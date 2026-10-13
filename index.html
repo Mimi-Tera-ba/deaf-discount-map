@@ -3,37 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>聴覚障害者向け 割引情報マップ (MVP版)</title>
+  <title>聴覚障害者割引情報マップ | 全国のレジャー・観光・交通 1,000件超</title>
+  <meta name="description" content="全国1,000件以上のレジャー施設・駐車場・交通機関の障害者手帳割引をマップと一覧で簡単検索！当事者やご家族のおでかけ・観光を応援する無料情報サイトです。">
+  
+  <!-- OGP (SNSシェア用カード) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🗺️ 聴覚障害者割引情報マップ | 全国のレジャー・観光・交通 1,000件超">
+  <meta property="og:description" content="全国1,000件以上のレジャー施設・駐車場・交通機関の障害者割引をマップと一覧で検索！お出かけや観光に役立つ無料情報マップ。">
+  <meta property="og:image" content="ogp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🗺️ 聴覚障害者割引情報マップ | 全国のレジャー・観光・交通 1,000件超">
+  <meta name="twitter:description" content="全国1,000件以上のレジャー施設・駐車場・交通機関の障害者割引をマップと一覧で検索！お出かけや観光に役立つ無料情報マップ。">
+  <meta name="twitter:image" content="ogp.jpg">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <header>
-    <h1>🗺️ 聴覚障害者割引情報マップ</h1>
-    <p>全国のレジャー施設・交通機関の割引情報を検索</p>
+    <div class="header-top">
+      <div class="header-title-wrap">
+        <h1>🗺️ 聴覚障害者割引情報マップ</h1>
+        <span class="header-tag">全国1,000件超</span>
+      </div>
+      
+      <!-- 上部検索バー（都道府県 → キーワード → ジャンル → 現在地） -->
+      <div class="top-search-bar">
+        <div class="search-item">
+          <label for="prefFilter">📍 都道府県</label>
+          <select id="prefFilter">
+            <option value="all">すべて</option>
+          </select>
+        </div>
+        <div class="search-item keyword-box">
+          <label for="keywordFilter">🔍 キーワード</label>
+          <input type="text" id="keywordFilter" placeholder="施設名・住所などで検索...">
+        </div>
+        <div class="search-item">
+          <label for="genreFilter">🏷️ ジャンル</label>
+          <select id="genreFilter">
+            <option value="all">すべて</option>
+            <option value="観光・レジャー施設">観光・レジャー施設</option>
+            <option value="交通機関">交通機関</option>
+            <option value="駐車場">駐車場</option>
+          </select>
+        </div>
+        <div class="search-item btn-box">
+          <button id="currentLocationBtn" class="location-btn" title="現在地周辺を表示">
+            🎯 現在地
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 検索バー直下の免責条項 -->
+    <div class="header-disclaimer">
+      ⚠️ 掲載情報は調査時点のものです。手帳の種別・等級による条件や最新の料金は、お出かけ前に必ず各公式サイト等でご確認ください。
+    </div>
   </header>
   
   <main>
     <aside class="sidebar">
-      <div class="filter-group">
-        <label for="prefFilter">都道府県</label>
-        <select id="prefFilter">
-          <option value="all">すべて</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="keywordFilter">キーワード（施設名など）</label>
-        <input type="text" id="keywordFilter" placeholder="検索ワードを入力..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit;">
-      </div>
-      <div class="filter-group">
-        <label for="genreFilter">カテゴリー</label>
-        <select id="genreFilter">
-          <option value="all">すべて</option>
-          <option value="観光・レジャー施設">観光・レジャー施設</option>
-          <option value="交通機関">交通機関</option>
-          <option value="駐車場">駐車場</option>
-        </select>
+      <div class="sidebar-header">
+        <h2>施設一覧 <span id="facilityCount" class="count-badge">読み込み中...</span></h2>
       </div>
       
       <div id="listContainer" class="list-container">
@@ -41,19 +74,40 @@
       </div>
 
       <div class="sidebar-footer">
-        <p class="disclaimer-text">
-          ⚠️ <strong>免責事項</strong>: 掲載情報は調査時点のものです。手帳の種別・等級による条件や最新の料金は、お出かけ前に必ず各公式サイトまたは現地にてご確認ください。
-        </p>
+        <!-- 情報提供・コミュニティ窓口 -->
+        <div class="community-box">
+          <p class="community-title">💡 <strong>情報提供・修正のお願い</strong></p>
+          <p class="community-desc">「新しい割引を見つけた」「内容が変わっていた」など情報をお寄せください</p>
+          <a href="https://github.com/maovs/DeafDiscountMap/issues" target="_blank" rel="noopener noreferrer" class="community-btn">
+            ✍️ 情報提供・修正を報告
+          </a>
+        </div>
+
+        <!-- 観光サポート・PR枠（控えめなデザイン） -->
+        <div class="sponsor-box">
+          <span class="sponsor-label">観光サポート / PR</span>
+          <p class="sponsor-text">🏨 <strong>旅行・おでかけの準備に</strong><br>周辺の宿泊施設や交通情報をチェック！</p>
+        </div>
       </div>
     </aside>
     
     <div id="map" class="map-container"></div>
   </main>
 
+  <!-- 初回アクセス用 Cookie同意バナー -->
+  <div id="cookieBanner" class="cookie-banner" style="display: none;">
+    <div class="cookie-content">
+      <p class="cookie-text">
+        🍪 <strong>Cookieの使用について</strong>: 当サイトでは利便性向上、利用状況の把握、および適切な広告配信のためCookie等を使用する場合があります。
+      </p>
+      <button id="acceptCookieBtn" class="cookie-btn">同意して閉じる</button>
+    </div>
+  </div>
+
   <!-- Google Maps JS API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN_Xslxoq4tfmgtssIPKHyixBWPQUpiRQ"></script>
   <!-- データとアプリのロジック -->
   <script src="data.js?v=4"></script>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

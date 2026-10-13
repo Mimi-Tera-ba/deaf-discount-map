@@ -23,21 +23,134 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, #4F46E5, #3B82F6);
+  background: linear-gradient(135deg, #4338CA, #2563EB);
   color: white;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 0.5rem 1.25rem 0.4rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 header h1 {
-  font-size: 1.5rem;
-  margin-bottom: 0.2rem;
+  font-size: 1.15rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
-header p {
-  font-size: 0.9rem;
-  opacity: 0.9;
+.header-tag {
+  font-size: 0.68rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.15rem 0.45rem;
+  border-radius: 99px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 上部検索バー（スリム設計） */
+.top-search-bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.search-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.search-item label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.search-item input,
+.search-item select {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  outline: none;
+  background: #FFFFFF;
+  color: #1F2937;
+  height: 30px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-item input:focus,
+.search-item select:focus {
+  border-color: #60A5FA;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+}
+
+.keyword-box {
+  min-width: 180px;
+}
+
+.search-item select {
+  min-width: 110px;
+}
+
+.btn-box {
+  justify-content: flex-end;
+}
+
+.location-btn {
+  padding: 0.35rem 0.75rem;
+  background: #10B981;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 30px;
+}
+
+.location-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+/* 検索直下のスリムな免責条項 */
+.header-disclaimer {
+  font-size: 0.68rem;
+  color: #FEF08A;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  line-height: 1.3;
 }
 
 main {
@@ -46,9 +159,9 @@ main {
   overflow: hidden;
 }
 
-/* サイドバー（リスト・検索） */
+/* サイドバー（リスト） */
 .sidebar {
-  width: 350px;
+  width: 380px;
   background: var(--card-bg);
   display: flex;
   flex-direction: column;
@@ -56,39 +169,44 @@ main {
   z-index: 5;
 }
 
-.filter-group {
-  padding: 1rem;
+.sidebar-header {
+  padding: 0.75rem 1rem;
+  background: #F9FAFB;
   border-bottom: 1px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.filter-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: var(--text-sub);
+.sidebar-header h2 {
+  font-size: 0.95rem;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.filter-group select {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #D1D5DB;
-  border-radius: 6px;
-  outline: none;
+.count-badge {
+  font-size: 0.75rem;
+  background: #4F46E5;
+  color: #FFFFFF;
+  padding: 0.15rem 0.55rem;
+  border-radius: 99px;
+  font-weight: 600;
 }
 
 .list-container {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 .facility-card {
   background: var(--card-bg);
   border: 1px solid #E5E7EB;
   border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.65rem;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -105,17 +223,18 @@ main {
 }
 
 .facility-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.98rem;
+  margin-bottom: 0.35rem;
   color: var(--primary-color);
+  line-height: 1.35;
 }
 
 .facility-card .badge {
   display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
   border-radius: 99px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
   color: #ffffff;
   font-weight: bold;
 }
@@ -126,15 +245,15 @@ main {
 .badge-parking { background: #34A853; } /* 緑：駐車場 */
 
 .facility-card p {
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
-  line-height: 1.4;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
 }
 
 .facility-card a {
   display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
   color: #2563EB;
   text-decoration: none;
 }
@@ -149,19 +268,206 @@ main {
   height: 100%;
 }
 
-/* フッター・免責事項 */
+/* フッター・コミュニティ・PR・免責事項 */
 .sidebar-footer {
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   background: #F9FAFB;
   border-top: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
-.disclaimer-text {
+/* 情報提供・コミュニティ窓口 */
+.community-box {
+  background: #EFF6FF;
+  border: 1px dashed #93C5FD;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.community-title {
+  font-size: 0.8rem;
+  color: #1E40AF;
+  margin-bottom: 0.25rem;
+}
+
+.community-desc {
   font-size: 0.72rem;
-  color: #6B7280;
+  color: #3B82F6;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.community-btn {
+  display: inline-block;
+  background: #2563EB;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.community-btn:hover {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+}
+
+/* 観光サポート・PR枠（控えめなデザイン） */
+.sponsor-box {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  position: relative;
+}
+
+.sponsor-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  color: #9CA3AF;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.sponsor-text {
+  font-size: 0.72rem;
+  color: #4B5563;
+  line-height: 1.35;
+}
+
+/* 免責事項 & プライバシー */
+.disclaimer-box {
+  border-top: 1px solid #F3F4F6;
+  padding-top: 0.5rem;
+}
+
+.disclaimer-text,
+.privacy-text {
+  font-size: 0.68rem;
+  color: #9CA3AF;
   line-height: 1.4;
+  margin-bottom: 0.25rem;
 }
 
 .disclaimer-text strong {
-  color: #374151;
+  color: #6B7280;
 }
+
+/* モバイル・レスポンシブ対応 */
+@media (max-width: 768px) {
+  body {
+    height: 100vh;
+  }
+  
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  .header-content h1 {
+    font-size: 1.15rem;
+  }
+
+  .header-subtitle {
+    display: none; /* スマホではヘッダーの高さを節約 */
+  }
+
+  .top-search-bar {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .keyword-box {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .search-item select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .location-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  main {
+    flex-direction: column-reverse; /* スマホでは上がマップ、下がリスト */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 45vh;
+  }
+
+  .map-container {
+    height: 55vh;
+  }
+}
+
+/* Cookie同意バナー（初回アクセス時） */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(17, 24, 39, 0.95);
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.cookie-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.cookie-text {
+  font-size: 0.78rem;
+  color: #E5E7EB;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+  min-width: 260px;
+}
+
+.cookie-text strong {
+  color: #FFFFFF;
+}
+
+.cookie-btn {
+  background: #3B82F6;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.cookie-btn:hover {
+  background: #2563EB;
+  transform: translateY(-1px);
+}
+
