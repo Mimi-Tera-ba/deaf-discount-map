@@ -1,9 +1,10 @@
 yaml
-name: 🚀 Deploy to Lolipop FTP
+name: Deploy to Lolipop FTP
 on:
   push:
     branches:
       - main
+      - master
     paths:
       - 'index.html'
       - 'style.css'
@@ -12,28 +13,27 @@ on:
       - 'ogp.jpg'
       - 'images/**'
       - '.github/workflows/deploy.yml'
-  workflow_dispatch: # ボタンから手動でいつでも実行可能
+  workflow_dispatch:
 concurrency:
   group: production
   cancel-in-progress: true
 jobs:
   web-deploy:
-    name: 🚚 本番サーバー同期
+    name: Deploy to Lolipop
     runs-on: ubuntu-latest
     steps:
-      - name: 📂 コードの取得 (Checkout)
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: 📤 ロリポップへファイルを自動転送 (FTP Deploy)
+      - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_DIR || 'map/' }}
+          server-dir: ${{ secrets.FTP_DIR }}
           protocol: ftps
-          security: loose
           exclude: |
             **/.git*
             **/.git*/**
