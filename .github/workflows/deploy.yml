@@ -1,52 +1,24 @@
-yaml
 name: Deploy to Lolipop FTP
-on:
-  push:
-    branches:
-      - main
-      - master
-    paths:
-      - 'index.html'
-      - 'style.css'
-      - 'app.js'
-      - 'data.js'
-      - 'ogp.jpg'
-      - 'images/**'
-      - '.github/workflows/deploy.yml'
-  workflow_dispatch:
-concurrency:
-  group: production
-  cancel-in-progress: true
-jobs:
-  web-deploy:
-    name: Deploy to Lolipop
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_DIR }}
-          protocol: ftps
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github*/**
-            **/node_modules/**
-            **/api_key.txt
-            **/gemini_api_key.txt
-            **/raw_data.csv
-            **/check_links.ps1
-            **/build_data_google.ps1
-            **/scrape_ai.js
-            **/scrape_hybrid.js
-            **/package.json
-            **/package-lock.json
-            **/ANTIGRAVITY.md
-            **/link_report.md
+    uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    with:
+      server: ${{ secrets.FTP_SERVER }}
+      username: ${{ secrets.FTP_USERNAME }}
+      password: ${{ secrets.FTP_PASSWORD }}
+      server-dir: ${{ secrets.FTP_DIR }}
+      protocol: ftps
+      exclude: |
+        **/.git*
+        **/.git*/**
+        **/.github*/**
+        **/node_modules/**
+        **/api_key.txt
+        **/gemini_api_key.txt
+        **/raw_data.csv
+        **/check_links.ps1
+        **/build_data_google.ps1
+        **/scrape_ai.js
+        **/scrape_hybrid.js
+        **/package.json
+        **/package-lock.json
+        **/ANTIGRAVITY.md
+        **/link_report.md
