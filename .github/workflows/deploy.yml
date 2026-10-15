@@ -1,24 +1,36 @@
 name: Deploy to Lolipop FTP
-    uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-    with:
-      server: ${{ secrets.FTP_SERVER }}
-      username: ${{ secrets.FTP_USERNAME }}
-      password: ${{ secrets.FTP_PASSWORD }}
-      server-dir: ${{ secrets.FTP_DIR }}
-      protocol: ftps
-      exclude: |
-        **/.git*
-        **/.git*/**
-        **/.github*/**
-        **/node_modules/**
-        **/api_key.txt
-        **/gemini_api_key.txt
-        **/raw_data.csv
-        **/check_links.ps1
-        **/build_data_google.ps1
-        **/scrape_ai.js
-        **/scrape_hybrid.js
-        **/package.json
-        **/package-lock.json
-        **/ANTIGRAVITY.md
-        **/link_report.md
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+jobs:
+  web-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_DIR }}
+          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*/**
+            **/node_modules/**
+            **/api_key.txt
+            **/gemini_api_key.txt
+            **/raw_data.csv
+            **/check_links.ps1
+            **/build_data_google.ps1
+            **/scrape_ai.js
+            **/scrape_hybrid.js
+            **/package.json
+            **/package-lock.json
+            **/ANTIGRAVITY.md
+            **/link_report.md
