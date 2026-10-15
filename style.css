@@ -1,9 +1,13 @@
 :root {
-  --primary-color: #4F46E5;
-  --bg-color: #F3F4F6;
+  --primary-color: #D96B00;
+  --primary-bright: #F39800;
+  --primary-hover: #BF5E00;
+  --bg-color: #FBFAF2;
+  --bg-secondary: #F5F3E9;
   --card-bg: #FFFFFF;
-  --text-main: #1F2937;
-  --text-sub: #6B7280;
+  --text-main: #251F0F;
+  --text-sub: #6B6355;
+  --border-color: #E7E5D9;
 }
 
 * {
@@ -23,10 +27,10 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, #4338CA, #2563EB);
+  background: linear-gradient(135deg, #F39800 0%, #D96B00 100%);
   color: white;
   padding: 0.5rem 1.25rem 0.4rem;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  box-shadow: 0 3px 12px rgba(217, 107, 0, 0.22);
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -47,6 +51,35 @@ header {
   gap: 0.5rem;
 }
 
+/* ミミノバTOPへの戻りリンク */
+.parent-site-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  border-radius: 99px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.parent-site-link:hover {
+  background: #FFFFFF;
+  color: #D96B00;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.back-arrow {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
 header h1 {
   font-size: 1.15rem;
   margin: 0;
@@ -57,7 +90,7 @@ header h1 {
 
 .header-tag {
   font-size: 0.68rem;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   padding: 0.15rem 0.45rem;
   border-radius: 99px;
   font-weight: 600;
@@ -70,10 +103,11 @@ header h1 {
   gap: 0.5rem;
   align-items: flex-end;
   flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.18);
   padding: 0.35rem 0.6rem;
   border-radius: 6px;
   backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .search-item {
@@ -97,15 +131,15 @@ header h1 {
   font-size: 0.8rem;
   outline: none;
   background: #FFFFFF;
-  color: #1F2937;
+  color: #251F0F;
   height: 30px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .search-item input:focus,
 .search-item select:focus {
-  border-color: #60A5FA;
-  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.3);
+  border-color: #F39800;
+  box-shadow: 0 0 0 2px rgba(243, 152, 0, 0.35);
 }
 
 .keyword-box {
@@ -146,8 +180,8 @@ header h1 {
 /* 検索直下のスリムな免責条項 */
 .header-disclaimer {
   font-size: 0.68rem;
-  color: #FEF08A;
-  background: rgba(0, 0, 0, 0.2);
+  color: #FFFDF0;
+  background: rgba(0, 0, 0, 0.18);
   padding: 0.25rem 0.65rem;
   border-radius: 4px;
   line-height: 1.3;
@@ -171,8 +205,8 @@ main {
 
 .sidebar-header {
   padding: 0.75rem 1rem;
-  background: #F9FAFB;
-  border-bottom: 1px solid #E5E7EB;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -180,7 +214,7 @@ main {
 
 .sidebar-header h2 {
   font-size: 0.95rem;
-  color: #374151;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -188,7 +222,7 @@ main {
 
 .count-badge {
   font-size: 0.75rem;
-  background: #4F46E5;
+  background: var(--primary-bright);
   color: #FFFFFF;
   padding: 0.15rem 0.55rem;
   border-radius: 99px;
@@ -203,13 +237,13 @@ main {
 
 .facility-card {
   background: var(--card-bg);
-  border: 1px solid #E5E7EB;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 0.85rem 1rem;
   margin-bottom: 0.65rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 1px 3px rgba(37, 31, 15, 0.04);
 }
 
 .facility-card-content {
@@ -218,8 +252,8 @@ main {
 
 .facility-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-color: var(--primary-color);
+  box-shadow: 0 4px 14px rgba(217, 107, 0, 0.15);
+  border-color: var(--primary-bright);
 }
 
 .facility-card h3 {
@@ -254,11 +288,12 @@ main {
   display: inline-block;
   margin-top: 0.35rem;
   font-size: 0.8rem;
-  color: #2563EB;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 .facility-card a:hover {
+  color: var(--primary-hover);
   text-decoration: underline;
 }
 
@@ -271,8 +306,8 @@ main {
 /* フッター・コミュニティ・PR・免責事項 */
 .sidebar-footer {
   padding: 1rem;
-  background: #F9FAFB;
-  border-top: 1px solid #E5E7EB;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -280,8 +315,8 @@ main {
 
 /* 情報提供・コミュニティ窓口 */
 .community-box {
-  background: #EFF6FF;
-  border: 1px dashed #93C5FD;
+  background: #FFFDF5;
+  border: 1px dashed #FCD34D;
   border-radius: 8px;
   padding: 0.75rem;
   text-align: center;
@@ -289,20 +324,20 @@ main {
 
 .community-title {
   font-size: 0.8rem;
-  color: #1E40AF;
+  color: #92400E;
   margin-bottom: 0.25rem;
 }
 
 .community-desc {
   font-size: 0.72rem;
-  color: #3B82F6;
+  color: #B45309;
   margin-bottom: 0.5rem;
   line-height: 1.35;
 }
 
 .community-btn {
   display: inline-block;
-  background: #2563EB;
+  background: var(--primary-bright);
   color: #FFFFFF;
   text-decoration: none;
   font-size: 0.75rem;
@@ -313,18 +348,18 @@ main {
 }
 
 .community-btn:hover {
-  background: #1D4ED8;
+  background: var(--primary-hover);
   transform: translateY(-1px);
 }
 
 /* 観光サポート・PR枠（上品なおでかけ準備カード） */
 .sponsor-box {
   background: #FFFFFF;
-  border: 1px solid #E5E7EB;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 0.75rem;
   position: relative;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 3px rgba(37, 31, 15, 0.04);
 }
 
 .sponsor-header {
@@ -344,7 +379,7 @@ main {
 .sponsor-sublabel {
   font-size: 0.62rem;
   color: #6B7280;
-  background: #F3F4F6;
+  background: var(--bg-secondary);
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
   font-weight: 600;
@@ -404,7 +439,7 @@ main {
 
 /* 免責事項 & プライバシー */
 .disclaimer-box {
-  border-top: 1px solid #F3F4F6;
+  border-top: 1px solid var(--border-color);
   padding-top: 0.5rem;
 }
 
@@ -478,7 +513,7 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(17, 24, 39, 0.95);
+  background: rgba(37, 31, 15, 0.95);
   color: #FFFFFF;
   padding: 0.75rem 1.5rem;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
@@ -504,7 +539,7 @@ main {
 
 .cookie-text {
   font-size: 0.78rem;
-  color: #E5E7EB;
+  color: #F5F3E9;
   line-height: 1.4;
   margin: 0;
   flex: 1;
@@ -516,7 +551,7 @@ main {
 }
 
 .cookie-btn {
-  background: #3B82F6;
+  background: var(--primary-bright);
   color: #FFFFFF;
   border: none;
   padding: 0.45rem 1.1rem;
@@ -529,7 +564,7 @@ main {
 }
 
 .cookie-btn:hover {
-  background: #2563EB;
+  background: var(--primary-hover);
   transform: translateY(-1px);
 }
 
