@@ -352,8 +352,8 @@ main {
   transform: translateY(-1px);
 }
 
-/* 観光サポート・PR枠（上品なおでかけ準備カード） */
-.sponsor-box {
+/* 旅行・おでかけ準備カード */
+.travel-support-card {
   background: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -362,43 +362,27 @@ main {
   box-shadow: 0 1px 3px rgba(37, 31, 15, 0.04);
 }
 
-.sponsor-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.35rem;
+.travel-card-title {
+  font-size: 0.82rem;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
 }
 
-.sponsor-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #4B5563;
-  letter-spacing: 0.03em;
-}
-
-.sponsor-sublabel {
-  font-size: 0.62rem;
-  color: #6B7280;
-  background: var(--bg-secondary);
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.sponsor-text {
+.travel-card-text {
   font-size: 0.73rem;
-  color: #4B5563;
+  color: var(--text-sub);
   line-height: 1.4;
   margin-bottom: 0.55rem;
 }
 
-.sponsor-links {
+.travel-card-links {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-.sponsor-link-btn {
+.travel-link-btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -430,7 +414,7 @@ main {
   font-weight: normal;
 }
 
-.sponsor-disclaimer {
+.travel-card-note {
   font-size: 0.62rem;
   color: #9CA3AF;
   margin-top: 0.45rem;
