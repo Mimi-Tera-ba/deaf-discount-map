@@ -22,8 +22,7 @@ body {
   color: var(--text-main);
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 header {
@@ -197,7 +196,8 @@ header h1 {
 main {
   display: flex;
   flex: 1;
-  overflow: hidden;
+  height: calc(100vh - 145px);
+  min-height: 540px;
 }
 
 /* サイドバー（リスト） */
@@ -431,7 +431,8 @@ main {
 /* モバイル・レスポンシブ対応 */
 @media (max-width: 768px) {
   body {
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
   }
   
   header {
@@ -468,15 +469,18 @@ main {
 
   main {
     flex-direction: column-reverse; /* スマホでは上がマップ、下がリスト */
+    height: auto;
   }
 
   .sidebar {
     width: 100%;
     height: 45vh;
+    min-height: 320px;
   }
 
   .map-container {
-    height: 55vh;
+    height: 50vh;
+    min-height: 280px;
   }
 }
 
